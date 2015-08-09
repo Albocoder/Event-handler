@@ -3,8 +3,9 @@
 <table>
 <br>
 <br>
-<tr><td>Username</td><td><input name="un" type="button" /></td></tr>
-<tr><td>Password</td><td><input name="pw" type="password" /></td></tr>
+<tr><td>This is a login application</td></tr>
+<tr><td>It will be used to login to another webpage</td></tr>
+<tr><td</td></tr>
 <tr>
 <td colspan = "2">
 </tr>
