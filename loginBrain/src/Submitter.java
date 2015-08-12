@@ -13,12 +13,15 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Submitter
  */
+@SuppressWarnings("serial")
 @WebServlet("/Submitter")
 public class Submitter extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
+     * 
+     * To do:
+     * 	Log Out button.
      */
 	PrintWriter print;
 	//boolean accept=false;
@@ -27,6 +30,13 @@ public class Submitter extends HttpServlet {
 		//an old attempt without sessions
 		//response.sendRedirect("loginAccepted.html");
 		//accept = true;
+		HttpSession login = request.getSession(false);
+		print = response.getWriter();
+		print.println("<!DOCTYPE html>\n<html><title>Logged Out!</title>\n<body>You "+
+		"are logged out successfully. Thank you for being a part of our system. Login again <a href=\"index."
+				+"html\">here</a> to submit again.\n</body>\n</html>");
+		print.close();
+		login.invalidate();
 	}
 
 	/**
@@ -99,6 +109,7 @@ public class Submitter extends HttpServlet {
 						"submitted because of time validation problem. Login again <a href=\"index."
 								+"html\">here</a> to submit again.\n</body>\n</html>");
 						print.close();
+						login.invalidate();
 					}
 				}
 				
@@ -109,6 +120,7 @@ public class Submitter extends HttpServlet {
 					"submitted because of time validation problem. Login again <a href=\"index."
 							+"html\">here</a> to submit again.\n</body>\n</html>");
 					print.close();
+					login.invalidate();
 				}
 			}
 			else if ( myIdentificationString.equals("AdminSuccess") ){

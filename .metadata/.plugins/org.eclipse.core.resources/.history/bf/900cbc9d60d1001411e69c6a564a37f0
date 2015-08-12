@@ -1,0 +1,99 @@
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+
+/**
+ * Servlet implementation class LoginHandler
+ */
+@WebServlet("/LoginHandler")
+public class LoginHandler extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+	
+	//instance variables
+    String un;
+    String pw;
+    
+    //this must hold the user form entering loginAccepted.html
+    //to develop later
+    boolean loginAccess;
+    
+    
+    //static variables
+    static PrintWriter print;
+    static boolean opened = false;
+    static String[] toWrite = new String[50];
+    static int counter=0;
+    
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    public void init(){
+        un = null;
+        pw = null;
+        //this checks if print is closed and then writes in the file if so
+        if(!opened){
+        	for(int i=0; i<=counter; i++){
+        		opened = !opened;
+        		print.write(toWrite[i]);
+        	}
+        	print.close();
+        	opened = !opened;
+        }
+        loginAccess = false;
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+				
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String name = request.getParameter("un");
+		String pass = request.getParameter("pw");
+		if (loginCheck(name, pass)){
+			response.sendRedirect("loginAccepted.html");
+		}
+		else {
+			response.sendRedirect("loginDenied.html");
+		}
+	}
+	
+	/* This will be algorithm to keep the servlets write one by one{
+	if (!opened){
+    	opened = !opened;
+    	print = new PrintWriter( "database.txt" , "UTF-16");
+    	//write the crap here and then close and switch state
+    	
+    	print.close();
+    	opened = !opened;
+    	
+    }
+    else{
+    	//must initialise(get from the request) info String later
+    	//toWrite[counter] = info;
+    	//counter++;
+    }
+    */
+	
+	private boolean loginCheck(String user, String pass){
+		user = user.toLowerCase();
+		pass = pass.toLowerCase();
+		
+		//temporal login checker
+		if (user.equals("admin")&&pass.equals("admin"))
+			return true;
+		else 
+			return false;
+	}
+
+}

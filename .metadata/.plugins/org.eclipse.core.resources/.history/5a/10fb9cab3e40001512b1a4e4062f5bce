@@ -1,0 +1,132 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class AdminPanel
+ */
+@WebServlet("/AdminPanel")
+public class AdminPanel extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public AdminPanel() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect("adminPanel.html");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		int actionInteger = Integer.parseInt(action);
+		HttpSession login = request.getSession(false);
+		String myIdentificationString;
+		if(login != null )
+			myIdentificationString = login.getAttribute("access").toString();	
+		else 
+			myIdentificationString = "Failure";
+		if( myIdentificationString.equals("AdminSuccess") ){
+			if( actionInteger == 1 ){
+				String events = readFile("events.xml");
+				PrintWriter print = response.getWriter();
+				print.println("<!DOCTYPE html>\n<html><title>Events Submitted</title>\n<body>Event file gives: <p>"+
+					events +" </p>You are logged out automatically. Login again <a href=\"index.html\">here</a> to take other action\n</body>\n</html>");
+				print.close();
+				login.invalidate();
+			}
+			else if ( actionInteger == 2 ){
+				//Delete old events
+				login.invalidate();
+			}
+			else if ( actionInteger == 3 ){
+				response.sendRedirect("loginAccepted.html");
+			}
+			else if ( actionInteger == 4 ){
+				//Peek at users' DB
+				login.invalidate();
+			}
+			else if ( actionInteger == 5 ){
+				//Delete a user
+				login.invalidate();
+			}
+			else if ( actionInteger == 6 ){
+				//Add a user
+				login.invalidate();
+			}
+			else if ( actionInteger == 7 ){
+				PrintWriter print;
+				print = response.getWriter();
+				print.println("<!DOCTYPE html>\n<html><title>Logged Out!</title>\n<body>You "+
+						"Logged Out successfully."
+						+ "\n Thank you for being a part of our staff."
+						+ "\n</body>\n</html>");
+				print.close();
+				login.invalidate();
+			}
+			else
+				login.invalidate();
+		}
+		else{
+			PrintWriter print;
+			print = response.getWriter();
+			print.println("<!DOCTYPE html>\n<html><title>Not authenticated!</title>\n<body>We are "+
+					"experiencing a problem trying to authenticate you."
+					+ " Please try to login again <a href=\"index.html\">here</a>. \n We appologise"
+					+ " for any inconvenience.\n</body>\n</html>");
+			print.close();
+		}
+
+	}
+	public String readFile(String toRead){
+		String file = "";
+		File output = new File(toRead);
+		//reads the lines for the user's database and dumps it in a String variable
+		//called "file"
+		try {
+			for (String line:Files.readAllLines(Paths.get(toRead))){
+				if( line.indexOf("<place>")>=0 )
+					line += "<br>";
+				int start = line.indexOf(">")+1;
+				if (line.indexOf("<event>")>=0 )
+					continue;
+				else if (line.indexOf("</event>")>=0)
+					line="<br>";
+				else
+					line = line.substring(1,start-1)+ ":   " +line.substring( start , line.indexOf("</"));
+				//to do: check this bullshit here; cannot remove the xml tags 
+				line += "<br>";
+				file += line+"\n";
+			}
+		}
+
+		catch (IOException e) {
+			e.printStackTrace();
+			try {
+				output.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return file;
+	}
+
+}

@@ -1,0 +1,9 @@
+127.0.0.1 - - [24/Mar/2015:13:39:39 +0200] "GET / HTTP/1.1" 404 951
+127.0.0.1 - - [24/Mar/2015:13:39:40 +0200] "GET /loginBrain/LoginHandler HTTP/1.1" 200 -
+127.0.0.1 - - [24/Mar/2015:13:39:44 +0200] "GET /loginBrain/index.html HTTP/1.1" 304 -
+127.0.0.1 - - [24/Mar/2015:13:39:45 +0200] "GET /loginBrain/login.jpg HTTP/1.1" 304 -
+127.0.0.1 - - [24/Mar/2015:13:39:51 +0200] "POST /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [24/Mar/2015:13:39:51 +0200] "GET /loginBrain/loginAccepted.html HTTP/1.1" 304 -
+127.0.0.1 - - [24/Mar/2015:13:39:51 +0200] "GET /loginBrain/submit.png HTTP/1.1" 304 -
+127.0.0.1 - - [24/Mar/2015:13:42:42 +0200] "GET / HTTP/1.1" 404 951
+127.0.0.1 - - [24/Mar/2015:13:45:21 +0200] "GET /loginBrain/LoginHandler HTTP/1.1" 200 -

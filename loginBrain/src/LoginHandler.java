@@ -1,14 +1,19 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.io.FilePermission;
 
 /**
@@ -53,8 +58,8 @@ public class LoginHandler extends HttpServlet {
 		//creating a new session
 		session = request.getSession(true);
 		session.setMaxInactiveInterval( 15*60 );
-
-		if (loginCheck(un, pw) == 2){
+		int loginCheck = loginCheck(un, pw);
+		if ( loginCheck == 2){
 			// set session info
 			secret.setReadable(true);
 			String dataName = "access";
@@ -63,13 +68,13 @@ public class LoginHandler extends HttpServlet {
 			secret.setReadable(false);
 			response.sendRedirect("loginAccepted.html");
 		}
-		else if (loginCheck(un, pw) == 1){
+		else if ( loginCheck == 1){
 			secret.setReadable(true);
 			String dataName = "access";
 			String dataValue = "AdminSuccess";
 			session.setAttribute(dataName, dataValue);
 			secret.setReadable(false);
-			response.sendRedirect("AdminPanel.html");
+			response.sendRedirect("AdminPanel");
 		}
 		
 		else {
@@ -80,6 +85,25 @@ public class LoginHandler extends HttpServlet {
 			secret.setReadable(false);
 			response.sendRedirect("loginDenied.html");
 		}
+		
+		File output = new File("log.txt");
+		if( !output.exists() )
+			output.createNewFile();
+		output.setExecutable(true);
+		output.setReadable(true);
+		output.setWritable(true);
+		boolean returnedLogin = false;
+		if( loginCheck == 1 || loginCheck == 2 )
+			returnedLogin = true;
+		print = new PrintWriter(new FileWriter(output, true));
+		SimpleDateFormat sdf = new SimpleDateFormat("{ dd/MM/YYYY -- HH:mm }");
+		print.println( sdf.format(new Date()) + " -- Username: " 
+						+ un + " tried to login. Login returned: " 
+						+ returnedLogin );
+		print.flush();
+		output.setExecutable(false);
+		output.setReadable(false);
+		output.setWritable(false);
 	}
 
 	private int loginCheck(String user, String pass) {

@@ -1,0 +1,15 @@
+127.0.0.1 - - [09/Aug/2015:20:17:43 +0300] "GET / HTTP/1.1" 404 951
+127.0.0.1 - - [09/Aug/2015:20:17:43 +0300] "GET /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2015:20:17:51 +0300] "POST /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2015:20:17:51 +0300] "GET /loginBrain/loginAccepted.html HTTP/1.1" 200 5670
+127.0.0.1 - - [09/Aug/2015:20:18:02 +0300] "POST /loginBrain/Submitter HTTP/1.1" 200 162
+127.0.0.1 - - [09/Aug/2015:20:21:29 +0300] "GET / HTTP/1.1" 404 951
+127.0.0.1 - - [09/Aug/2015:20:21:30 +0300] "GET /loginBrain/Submitter HTTP/1.1" 200 -
+127.0.0.1 - - [09/Aug/2015:20:21:36 +0300] "POST /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2015:20:21:36 +0300] "GET /loginBrain/loginAccepted.html HTTP/1.1" 304 -
+127.0.0.1 - - [09/Aug/2015:20:21:44 +0300] "POST /loginBrain/Submitter HTTP/1.1" 200 171
+127.0.0.1 - - [09/Aug/2015:20:22:01 +0300] "POST /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [09/Aug/2015:20:22:01 +0300] "GET /loginBrain/loginAccepted.html HTTP/1.1" 304 -
+127.0.0.1 - - [09/Aug/2015:20:22:11 +0300] "POST /loginBrain/Submitter HTTP/1.1" 200 162
+127.0.0.1 - - [09/Aug/2015:20:22:42 +0300] "GET /WebBrain/LoginHandler HTTP/1.1" 404 993
+127.0.0.1 - - [09/Aug/2015:20:30:44 +0300] "GET /WebBrain/LoginHandler HTTP/1.1" 404 993

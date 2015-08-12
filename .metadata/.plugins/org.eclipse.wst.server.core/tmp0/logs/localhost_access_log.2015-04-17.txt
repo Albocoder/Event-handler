@@ -1,0 +1,9 @@
+127.0.0.1 - - [17/Apr/2015:14:49:15 +0300] "GET / HTTP/1.1" 404 951
+127.0.0.1 - - [17/Apr/2015:14:49:15 +0300] "GET /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [17/Apr/2015:14:49:20 +0300] "POST /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [17/Apr/2015:14:49:20 +0300] "GET /loginBrain/loginAccepted.html HTTP/1.1" 304 -
+127.0.0.1 - - [17/Apr/2015:14:49:45 +0300] "GET /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [17/Apr/2015:14:49:48 +0300] "POST /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [17/Apr/2015:14:49:48 +0300] "GET /loginBrain/loginDenied.html HTTP/1.1" 304 -
+127.0.0.1 - - [17/Apr/2015:14:50:08 +0300] "POST /loginBrain/LoginHandler HTTP/1.1" 302 -
+127.0.0.1 - - [17/Apr/2015:14:50:08 +0300] "GET /loginBrain/loginDenied.html HTTP/1.1" 304 -
