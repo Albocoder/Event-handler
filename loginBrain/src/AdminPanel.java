@@ -5,8 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class AdminPanel
  */
 @WebServlet("/AdminPanel")
-public class AdminPanel extends HttpServlet {
+public class AdminPanel<HttpServletRequest> extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -38,9 +38,9 @@ public class AdminPanel extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
+		String action = ((ServletRequest) request).getParameter("action");
 		int actionInteger = Integer.parseInt(action);
-		HttpSession login = request.getSession(false);
+		HttpSession login = ((javax.servlet.http.HttpServletRequest) request).getSession(false);
 		String myIdentificationString;
 		if(login != null )
 			myIdentificationString = login.getAttribute("access").toString();	

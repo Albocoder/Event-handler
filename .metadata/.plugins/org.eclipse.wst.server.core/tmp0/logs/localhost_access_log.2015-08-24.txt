@@ -1,0 +1,5 @@
+127.0.0.1 - - [24/Aug/2015:11:06:59 +0200] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [24/Aug/2015:11:07:00 +0200] "GET /loginBrain/LoginHandler HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [24/Aug/2015:11:07:00 +0200] "GET /loginBrain/index.html HTTP/1.1" 200 3158
+0:0:0:0:0:0:0:1 - - [24/Aug/2015:11:07:00 +0200] "GET /loginBrain/login.jpg HTTP/1.1" 200 13133
+0:0:0:0:0:0:0:1 - - [24/Aug/2015:11:07:00 +0200] "GET /loginBrain/wallpaper.jpg HTTP/1.1" 200 159168
