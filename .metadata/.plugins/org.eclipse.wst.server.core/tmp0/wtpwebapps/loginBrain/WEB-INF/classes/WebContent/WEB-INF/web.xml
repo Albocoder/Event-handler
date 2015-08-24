@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>loginBrain</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>logged/loginAccepted.html</welcome-file>
+    <welcome-file>loginDenied.html</welcome-file>
+  </welcome-file-list>
+  <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet>
+  	<servlet-name>AdminPanel</servlet-name>
+  	<servlet-class>AdminPanel</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdminPanel</servlet-name>
+  	<url-pattern>/AdminPanel</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>LoginHandler</servlet-name>
+  	<servlet-class>LoginHandler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginHandler</servlet-name>
+  	<url-pattern>/LoginHandler</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>Submitter</servlet-name>
+  	<servlet-class>Submitter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Submitter</servlet-name>
+  	<url-pattern>/Submitter</url-pattern>
+  </servlet-mapping>
+  <login-config>
+	<auth-method>FORM</auth-method>
+	<form-login-config>
+	 <form-login-page>/index.html</form-login-page>
+	 <form-error-page>/loginDenied.html</form-error-page>
+	</form-login-config>
+  </login-config>
+</web-app>
